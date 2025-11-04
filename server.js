@@ -29,7 +29,7 @@ app.use(
 // EJS-Views
 app.set("view engine", "ejs");
 import path from "path";
-// ...
+// DB öffnen (Render-kompatibel mit Fallback auf /tmp)
 const db = await open({
  filename: process.env.DB_FILE || path.join("/tmp", "jam-board.db"),
  driver: sqlite3.Database,
