@@ -1,26 +1,35 @@
 <!doctype html>
 <html lang="de">
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width,initial-scale=1" />
  <title><%= ad.title %> – Jam-Board</title>
- <link rel="stylesheet" href="/styles.css">
+ <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
- <header>
-   <h1><a href="/">Jam-Board</a></h1>
-   <nav><a href="/">Angebote</a> · <a href="/admin/login">Admin</a></nav>
+ <header class="top">
+   <div class="wrap">
+     <div class="brand"><a href="/">Jam-Board</a></div>
+     <nav class="nav">
+       <a href="/">Angebote</a>
+       <a href="/admin/login">Admin</a>
+     </nav>
+   </div>
  </header>
 
- <main>
-   <p><a href="/">← Zurück</a></p>
-   <h2><%= ad.title %></h2>
-   <p><small><%= new Date(ad.created_at).toLocaleDateString('de-DE') %></small></p>
-   <p><%= ad.body %></p>
- </main>
+ <main class="wrap">
+   <a class="back" href="/">&larr; Zurück</a>
 
- <footer>
-   © <%= new Date().getFullYear() %> Blues Session Herten
- </footer>
+   <article class="detail">
+     <h1><%= ad.title %></h1>
+     <div class="meta">
+       <%= ad.created_at %>
+       <% if (ad.price != null) { %> · <strong><%= ad.price %> €</strong><% } %>
+     </div>
+     <p><%= (ad.text || "").replace(/\n/g, "<br>") %></p>
+   </article>
+
+   <footer class="footer">© <%= new Date().getFullYear() %> Blues Session Herten</footer>
+ </main>
 </body>
 </html>
