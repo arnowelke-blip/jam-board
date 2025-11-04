@@ -1,5 +1,11 @@
 :root{
- --bg:#f7f7fb; --card:#fff; --ink:#1f2330; --muted:#6b7280; --line:#e6e8ef; --brand:#0d6efd;
+ --bg:#f3e7c9;       /* sandbeige Hintergrund */
+ --card:#ffffff;     /* weiße Kartenflächen */
+ --ink:#1c2530;      /* fast schwarz-blaugrau für Text */
+ --muted:#6f7b85;    /* dezentes Grau für Sekundärtext */
+ --line:#d8c49b;     /* helle Linie / Abgrenzungen */
+ --brand:#1a3868;    /* dunkles, edles Blau */
+ --accent:#305fa4;   /* kräftigeres Blau für Buttons / Hover */
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
