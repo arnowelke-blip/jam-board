@@ -1,0 +1,8 @@
+<%- include('layout', { title: ad?.title || 'Detail', body: `
+ <a class="back" href="javascript:history.back()">← Zurück</a>
+ <article class="detail">
+   <h1>${ad?.title || 'Ohne Titel'}</h1>
+   <p class="muted">${ad?.category || ''} · ${new Date(ad.created_at).toLocaleDateString('de-DE')}</p>
+   <p>${(ad?.description || '').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</p>
+ </article>
+` }) %>
