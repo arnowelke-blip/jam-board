@@ -31,9 +31,18 @@ app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "views"));
 
 // DB öffnen
+// DB öffnen (Render-kompatibel mit ENV + Ordnerprüfung)
+import fs from "fs";
+import path from "path";
+import sqlite3 from "sqlite3";
+import { open } from "sqlite";
+
+const dbFile = process.env.DB_FILE || path.resolve("data/jam-board.db");
+fs.mkdirSync(path.dirname(dbFile), { recursive: true });
+
 const db = await open({
- filename: "./data/jamboard.db",
- driver: sqlite3.Database,
+ filename: dbFile,
+ driver: sqlite3.Database
 });
 
 // Routen
