@@ -1,25 +1,43 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="de">
- <head>
-   <meta charset="utf-8" />
-   <title>Jam-Board</title>
-   <link rel="stylesheet" href="/styles.css" />
- </head>
- <body>
-   <h1>Jam-Board</h1>
+<head>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width,initial-scale=1" />
+ <title>Jam-Board</title>
+ <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+ <header class="top">
+   <div class="wrap">
+     <div class="brand"><a href="/">Jam-Board</a></div>
+     <nav class="nav">
+       <a href="/">Angebote</a>
+       <a href="/admin/login">Admin</a>
+     </nav>
+   </div>
+ </header>
+
+ <main class="wrap">
+   <h2>Neue Angebote</h2>
 
    <% if (ads && ads.length) { %>
-     <ul>
+     <div class="grid">
        <% ads.forEach(ad => { %>
-         <li>
-           <a href="/ad/<%= ad.id %>"><%= ad.title %></a>
-           <% if (ad.price) { %> — <%= ad.price %> <% } %>
-         </li>
+         <article class="card">
+           <h3><a href="/ad/<%= ad.id %>"><%= ad.title %></a></h3>
+           <div class="meta">
+             <%= ad.created_at %>
+             <% if (ad.price != null) { %> · <strong><%= ad.price %> €</strong><% } %>
+           </div>
+           <a class="btn" href="/ad/<%= ad.id %>">Details ansehen</a>
+         </article>
        <% }) %>
-     </ul>
+     </div>
    <% } else { %>
      <p>Noch keine Anzeigen.</p>
    <% } %>
- </body>
+
+   <footer class="footer">© <%= new Date().getFullYear() %> Blues Session Herten</footer>
+ </main>
+</body>
 </html>
