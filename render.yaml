@@ -5,14 +5,6 @@ services:
    buildCommand: npm install
    startCommand: npm start
    plan: free
-
-services:
- - type: web
-   name: jam-board
-   env: node
-   buildCommand: npm install
-   startCommand: npm start
-   plan: free
    envVars:
      - key: DB_FILE
        value: /data/jam-board.db
