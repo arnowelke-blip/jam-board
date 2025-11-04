@@ -34,6 +34,27 @@ const db = await open({
  filename: process.env.DB_FILE || path.join("/tmp", "jam-board.db"),
  driver: sqlite3.Database,
 });
+// Schema einmalig anlegen
+await db.exec(`
+ CREATE TABLE IF NOT EXISTS ads (
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   title TEXT NOT NULL,
+   price INTEGER,
+   description TEXT,
+   contact TEXT,
+   image TEXT,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+ );
+`);
+
+// Optionale Startdaten, nur wenn Tabelle leer ist
+const row = await db.get("SELECT COUNT(*) AS cnt FROM ads");
+if (row.cnt === 0) {
+ await db.run(
+   "INSERT INTO ads (title, price, description, contact) VALUES (?, ?, ?, ?)",
+   ["Erste Anzeige", 0, "Willkommen auf dem Jam-Board!", "demo@example.com"]
+ );
+}
 // Routen
 app.get("/", async (req, res) => {
  const ads = await db.all("SELECT * FROM ads ORDER BY created_at DESC");
