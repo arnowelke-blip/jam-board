@@ -28,12 +28,12 @@ app.use(
 
 // EJS-Views
 app.set("view engine", "ejs");
-// DB öffnen (Render-kompatibel: ENV oder Standardpfad)
+import path from "path";
+// ...
 const db = await open({
- filename: process.env.DB_FILE || path.join(process.cwd(), "data", "jam-board.db"),
+ filename: process.env.DB_FILE || path.join("/tmp", "jam-board.db"),
  driver: sqlite3.Database,
 });
-
 // Routen
 app.get("/", async (req, res) => {
  const ads = await db.all("SELECT * FROM ads ORDER BY created_at DESC");
