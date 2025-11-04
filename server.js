@@ -33,11 +33,6 @@ const db = await open({
  driver: sqlite3.Database,
 });
 
-const db = await open({
- filename: dbFile,
- driver: sqlite3.Database
-});
-
 // Routen
 app.get("/", async (req, res) => {
  const ads = await db.all("SELECT * FROM ads ORDER BY created_at DESC");
@@ -56,8 +51,4 @@ app.get("/admin/login", (req, res) => {
 // Start
 app.listen(port, () => {
  console.log(`🚀 Jam-Board läuft auf http://localhost:${port}`);
-});
-// Server starten
-app.listen(port, () => {
- console.log(`Jam-Board läuft auf http://localhost:${port}`);
 });
