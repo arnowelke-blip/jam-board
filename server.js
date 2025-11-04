@@ -3,7 +3,6 @@ import express from "express";
 import sqlite3 from "sqlite3";
 import { open } from "sqlite";
 import dotenv from "dotenv";
-import path from "path";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import bodyParser from "body-parser";
