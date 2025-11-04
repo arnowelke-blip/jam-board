@@ -27,10 +27,10 @@ app.use(
 
 // EJS-Views
 app.set("view engine", "ejs");
-app.set("views", path.join(process.cwd(), "views"));
-
 // DB öffnen
-// DB öffnen (Render-kompatibel mit ENV + Ordnerprüfung)
+// DB 
+app.set("views", path.join(process.cwd(), "views"));
+öffnen (Render-kompatibel mit ENV + Ordnerprüfung)
 import fs from "fs";
 import path from "path";
 import sqlite3 from "sqlite3";
