@@ -1,8 +1,26 @@
-<%- include('layout', { title: ad?.title || 'Detail', body: `
- <a class="back" href="javascript:history.back()">← Zurück</a>
- <article class="detail">
-   <h1>${ad?.title || 'Ohne Titel'}</h1>
-   <p class="muted">${ad?.category || ''} · ${new Date(ad.created_at).toLocaleDateString('de-DE')}</p>
-   <p>${(ad?.description || '').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</p>
- </article>
-` }) %>
+<!doctype html>
+<html lang="de">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title><%= ad.title %> – Jam-Board</title>
+ <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+ <header>
+   <h1><a href="/">Jam-Board</a></h1>
+   <nav><a href="/">Angebote</a> · <a href="/admin/login">Admin</a></nav>
+ </header>
+
+ <main>
+   <p><a href="/">← Zurück</a></p>
+   <h2><%= ad.title %></h2>
+   <p><small><%= new Date(ad.created_at).toLocaleDateString('de-DE') %></small></p>
+   <p><%= ad.body %></p>
+ </main>
+
+ <footer>
+   © <%= new Date().getFullYear() %> Blues Session Herten
+ </footer>
+</body>
+</html>
