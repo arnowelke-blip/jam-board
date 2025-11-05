@@ -11,7 +11,6 @@
    <div class="wrap">
      <div class="brand"><a href="/">Jam-Board</a></div>
 
-     <!-- Burger Toggle (JS-frei) -->
      <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Menü öffnen/schließen" />
      <label for="nav-toggle" class="burger" aria-hidden="true"><span></span></label>
 
@@ -23,9 +22,23 @@
  </header>
 
  <main class="wrap">
-   <h2>Admin Login (Platzhalter)</h2>
-   <p>Hier könnte später ein Login-Formular stehen.</p>
-   <a class="back" href="javascript:history.back()">← Zurück</a>
+   <article class="card detail">
+     <h2>Admin Login</h2>
+
+     <% if (typeof error !== "undefined" && error) { %>
+       <p style="color:#b00020; margin:8px 0 16px;"><%= error %></p>
+     <% } %>
+
+     <form action="/admin/login" method="post" style="display:grid; gap:12px; max-width:420px;">
+       <label for="password">Passwort</label>
+       <input id="password" name="password" type="password" required placeholder="••••••••" />
+       <button class="btn" type="submit">Einloggen</button>
+     </form>
+
+     <p style="margin-top:16px;">
+       <a class="back" href="javascript:history.back()">← Zurück</a>
+     </p>
+   </article>
  </main>
 
  <footer class="wrap">
