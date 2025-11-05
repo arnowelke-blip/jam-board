@@ -55,6 +55,32 @@ if (row.cnt === 0) {
    ["Erste Anzeige", 0, "Willkommen auf dem Jam-Board!", "demo@example.com"]
  );
 }
+// Formular anzeigen
+app.get("/admin/new", (req, res) => {
+ res.render("admin_new");
+});
+
+// Formular verarbeiten
+app.post("/admin/new", async (req, res) => {
+ try {
+   const title = (req.body.title || "").trim();
+   const description = (req.body.description || "").trim();
+   const image_url = (req.body.image_url || "").trim();
+   const price = Number.isFinite(Number(req.body.price)) ? Number(req.body.price) : 0;
+
+   if (!title) return res.status(400).send("Titel fehlt.");
+
+   await db.run(
+     "INSERT INTO ads (title, description, price, image_url) VALUES (?, ?, ?, ?)",
+     [title, description, price, image_url]
+   );
+
+   res.redirect("/");
+ } catch (err) {
+   console.error(err);
+   res.status(500).send("Speichern fehlgeschlagen.");
+ }
+});
 // Routen
 app.get("/", async (req, res) => {
  const ads = await db.all("SELECT * FROM ads ORDER BY created_at DESC");
