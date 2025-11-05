@@ -80,3 +80,44 @@ body{
 .back{ display:inline-flex; align-items:center; gap:6px; margin:12px 0; color:var(--brand); text-decoration:none; }
 .back:hover{ text-decoration:underline; }
 .btn.small{ padding:6px 10px; font-size:14px; border-radius:6px; }
+/* ========== Form UI (BSH Stil) ========== */
+.detail form{
+ display:grid;
+ gap:12px;
+ grid-template-columns:1fr;
+}
+@media (min-width: 720px){
+ .detail form{ grid-template-columns: 1fr 1fr; }
+ .field--full{ grid-column: 1 / -1; }
+}
+
+.field label{
+ display:block;
+ font-size:14px;
+ font-weight:600;
+ color:var(--muted);
+ margin-bottom:6px;
+}
+
+.input, .textarea{
+ width:100%;
+ padding:10px 12px;
+ border:1px solid var(--line);
+ border-radius:8px;
+ background:#fff;
+ color:var(--ink);
+}
+.textarea{ min-height:120px; resize:vertical; }
+
+.actions{ grid-column:1 / -1; margin-top:6px; }
+
+.btn--primary{
+ background:var(--brand);
+ color:#fff;
+ border-radius:8px;
+ padding:10px 14px;
+ text-decoration:none;
+ font-weight:600;
+ display:inline-block;
+}
+.btn--primary:hover{ filter:brightness(1.05); }
