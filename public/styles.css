@@ -121,3 +121,20 @@ body{
  display:inline-block;
 }
 .btn--primary:hover{ filter:brightness(1.05); }
+/* --- Zurück-Button-Stil --- */
+.btn.back {
+ background: transparent;
+ border: 1px solid var(--brand);
+ color: var(--brand);
+ padding: 8px 14px;
+ border-radius: 6px;
+ font-weight: 600;
+ text-decoration: none;
+ transition: all 0.2s ease;
+}
+
+.btn.back:hover {
+ background: var(--brand);
+ color: #fff;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
