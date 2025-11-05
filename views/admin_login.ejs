@@ -1,20 +1,35 @@
 <!doctype html>
 <html lang="de">
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
  <title>Admin Login – Jam-Board</title>
- <link rel="stylesheet" href="/styles.css">
+ <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
- <header>
-   <h1><a href="/">Jam-Board</a></h1>
+ <header class="top">
+   <div class="wrap">
+     <div class="brand"><a href="/">Jam-Board</a></div>
+
+     <!-- Burger Toggle (JS-frei) -->
+     <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Menü öffnen/schließen" />
+     <label for="nav-toggle" class="burger" aria-hidden="true"><span></span></label>
+
+     <nav class="nav">
+       <a href="/">Angebote</a>
+       <a href="/admin/new" class="btn small">+ Neue Anzeige</a>
+     </nav>
+   </div>
  </header>
 
- <main>
+ <main class="wrap">
    <h2>Admin Login (Platzhalter)</h2>
    <p>Hier könnte später ein Login-Formular stehen.</p>
-   <p><a href="/">← Zurück</a></p>
+   <a class="back" href="javascript:history.back()">← Zurück</a>
  </main>
+
+ <footer class="wrap">
+   <p>© 2025 Blues Session Herten</p>
+ </footer>
 </body>
 </html>
