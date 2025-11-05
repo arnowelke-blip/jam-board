@@ -97,6 +97,32 @@ app.get("/admin/login", (req, res) => {
 });
 
 // Start
+// Formular anzeigen (GET)
+app.get("/admin/new", (req, res) => {
+ res.render("admin_new");
+});
+
+// Formular verarbeiten (POST)
+app.post("/admin/new", async (req, res) => {
+ try {
+   const title = (req.body.title || "").trim();
+   const description = (req.body.description || "").trim();
+   const image_url = (req.body.image_url || "").trim();
+   const price = Number.isFinite(Number(req.body.price)) ? Number(req.body.price) : 0;
+
+   if (!title) return res.status(400).send("Titel fehlt.");
+
+   await db.run(
+     "INSERT INTO ads (title, description, price, image_url) VALUES (?, ?, ?, ?)",
+     [title, description, price, image_url]
+   );
+
+   res.redirect("/");
+ } catch (err) {
+   console.error(err);
+   res.status(500).send("Speichern fehlgeschlagen.");
+ }
+});
 app.listen(port, () => {
  console.log(`🚀 Jam-Board läuft auf http://localhost:${port}`);
 });
