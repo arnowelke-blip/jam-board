@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
  <meta charset="utf-8" />
- <meta name="viewport" content="width=device-width,initial-scale=1" />
  <title><%= ad.title %> – Jam-Board</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -12,24 +12,31 @@
      <div class="brand"><a href="/">Jam-Board</a></div>
      <nav class="nav">
        <a href="/">Angebote</a>
-       <a href="/admin/login">Admin</a>
+       <a href="/admin/new" class="btn small">+ Neue Anzeige</a>
      </nav>
    </div>
  </header>
 
  <main class="wrap">
-   <a class="back" href="/">&larr; Zurück</a>
+   <a class="back" href="javascript:history.back()">← Zurück</a>
 
    <article class="detail">
      <h1><%= ad.title %></h1>
-     <div class="meta">
+     <p class="meta">
        <%= ad.created_at %>
-       <% if (ad.price != null) { %> · <strong><%= ad.price %> €</strong><% } %>
-     </div>
-     <p><%= (ad.text || "").replace(/\n/g, "<br>") %></p>
-   </article>
+       <% if (ad.price !== null && ad.price !== undefined) { %> · <%= ad.price %> € <% } %>
+     </p>
 
-   <footer class="footer">© <%= new Date().getFullYear() %> Blues Session Herten</footer>
+     <% if (ad.image_url) { %>
+       <img class="media" src="<%= ad.image_url %>" alt="<%= ad.title %>" />
+     <% } %>
+
+     <% if (ad.description) { %>
+       <p><%= ad.description %></p>
+     <% } %>
+   </article>
  </main>
+
+ <footer class="wrap footer">© 2025 Blues Session Herten</footer>
 </body>
 </html>
