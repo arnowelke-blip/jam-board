@@ -30,22 +30,55 @@ app.use(
 app.set("view engine", "ejs");
 
 // DB öffnen (Render-kompatibel mit Fallback auf /tmp)
+// DB öffnen …
 const db = await open({
  filename: process.env.DB_FILE || path.join("/tmp", "jam-board.db"),
  driver: sqlite3.Database,
 });
-// Schema einmalig anlegen
+
+// --- Schema anlegen & Demo-Daten befüllen (einmalig) ---
 await db.exec(`
  CREATE TABLE IF NOT EXISTS ads (
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    title TEXT NOT NULL,
-   price INTEGER,
    description TEXT,
-   contact TEXT,
-   image TEXT,
-   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+   price INTEGER,
+   image_url TEXT,
+   created_at TEXT DEFAULT (datetime('now'))
  );
 `);
+
+const { cnt } = await db.get(`SELECT COUNT(*) AS cnt FROM ads`);
+if (cnt === 0) {
+ const stmt = await db.prepare(
+   `INSERT INTO ads (title, description, price, image_url, created_at)
+    VALUES (?, ?, ?, ?, datetime('now'))`
+ );
+
+ await stmt.run(
+   "Fender Stratocaster",
+   "Gepflegte Mex-Strat, neue Saiten, inkl. Gigbag.",
+   650,
+   "https://images.unsplash.com/photo-1511379938547-c1f69419868d"
+ );
+
+ await stmt.run(
+   "Suche Blues-Harp Lehrer:in",
+   "Einsteiger sucht wöchentliche Sessions in Herten/Umgebung.",
+   0,
+   null
+ );
+
+ await stmt.run(
+   "Röhrenamp 15W",
+   "Warmer Crunch, ideal für kleine Gigs. Test möglich.",
+   320,
+   null
+ );
+
+ await stmt.finalize();
+ console.log("Seed: Demo-Anzeigen eingefügt.");
+}
 
 // Optionale Startdaten, nur wenn Tabelle leer ist
 const row = await db.get("SELECT COUNT(*) AS cnt FROM ads");
