@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+ <meta charset="utf-8" />
+ <title>Neue Anzeige – Jam-Board</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+ <header class="top">
+   <div class="wrap">
+     <div class="brand"><a href="/">Jam-Board</a></div>
+     <nav class="nav"><a href="/">Angebote</a></nav>
+   </div>
+ </header>
+
+ <main class="wrap">
+   <a class="back" href="/">← Zurück</a>
+
+   <article class="detail">
+     <h1>Neue Anzeige</h1>
+
+     <form method="post" action="/admin/new" class="form">
+       <label>Titel
+         <input type="text" name="title" required />
+       </label>
+
+       <label>Beschreibung
+         <textarea name="description" rows="6" placeholder="Kurzbeschreibung..."></textarea>
+       </label>
+
+       <label>Preis (in €)
+         <input type="number" name="price" step="1" min="0" placeholder="0" />
+       </label>
+
+       <label>Bild-URL (optional)
+         <input type="url" name="image_url" placeholder="https://…" />
+       </label>
+
+       <button class="btn" type="submit">Speichern</button>
+     </form>
+   </article>
+ </main>
+
+ <footer class="wrap footer">© 2025 Blues Session Herten</footer>
+</body>
+</html>
