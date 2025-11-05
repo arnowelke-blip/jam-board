@@ -73,3 +73,10 @@ body{
  .nav{gap:14px;}
  .wrap{padding:24px 16px 40px;}
 }
+/* Detailseite & Utility */
+.detail h1{ margin:0 0 6px 0; }
+.detail .meta{ color:var(--muted); margin-bottom:14px; }
+.media{ width:100%; max-width:680px; height:auto; border-radius:8px; display:block; margin:12px 0 18px; }
+.back{ display:inline-flex; align-items:center; gap:6px; margin:12px 0; color:var(--brand); text-decoration:none; }
+.back:hover{ text-decoration:underline; }
+.btn.small{ padding:6px 10px; font-size:14px; border-radius:6px; }
