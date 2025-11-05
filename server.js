@@ -125,8 +125,20 @@ app.get("/ad/:id", async (req, res) => {
  res.render("detail", { ad });
 });
 
+// Admin-Login zeigen (GET)
 app.get("/admin/login", (req, res) => {
- res.render("admin_login");
+ res.render("admin_login", { error: null });
+});
+
+// Admin-Login verarbeiten (POST)
+app.post("/admin/login", (req, res) => {
+ const pass = (req.body.password || "").trim();
+ const expected = process.env.ADMIN_PASS || "jamboard"; // <-- Default für Demo
+
+ if (pass && pass === expected) {
+   return res.redirect("/admin/new"); // nach erfolgreichem Login zum Formular
+ }
+ return res.status(401).render("admin_login", { error: "Falsches Passwort." });
 });
 
 // Start
